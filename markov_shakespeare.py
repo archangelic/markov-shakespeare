@@ -20,6 +20,6 @@ class Shakey(ananas.PineappleBot):
             text = json.load(f)
         self.text_model = POSifiedText.from_json(text)
 
-    @ananas.schedule(hour="*/3", minute="32")
+    @ananas.hourly(minute=11)
     def post_markov_sentence(self):
         self.mastodon.toot(self.text_model.make_sentence())
