@@ -17,8 +17,7 @@ class POSifiedText(markovify.Text):
 class Shakey(ananas.PineappleBot):
     def start(self):
         with open('shakespeare.json') as f:
-            text = json.load(f)
-        self.text_model = POSifiedText.from_json(text)
+            self.text_model = POSifiedText.from_json(json.load(f))
 
     @ananas.hourly(minute=11)
     def post_markov_sentence(self):
