@@ -21,4 +21,6 @@ class Shakey(ananas.PineappleBot):
 
     @ananas.hourly(minute=11)
     def post_markov_sentence(self):
-        self.mastodon.toot(self.text_model.make_sentence())
+        message = self.text_model.make_sentence()
+        if len(message) <= 500:
+            self.mastodon.post(message)
